@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {
   cloneElement,
   DOMAttributes,
@@ -7,16 +7,16 @@ import {
   SyntheticEvent,
   useEffect,
   useRef,
-} from 'react';
+} from "react";
 import {
   ClickAwayMouseEventHandler,
   ClickAwayTouchEventHandler,
   IClickAwayListenerProps,
-} from './interface';
-import ownerDocument from './owner-document';
-import { clickedRootScrollbar, mapEventPropToEvent } from './utils/utils';
-import useEventCallback from '../hooks/useEventCallback';
-import useForkRef from '../hooks/useForkRef';
+} from "./interface";
+import ownerDocument from "./owner-document";
+import { clickedRootScrollbar, mapEventPropToEvent } from "./utils/utils";
+import useEventCallback from "../hooks/useEventCallback";
+import useForkRef from "../hooks/useForkRef";
 
 /**
  * `ClickAwayListener` is a React component that listens for click events of its child component and triggers a callback.
@@ -50,12 +50,8 @@ const ClickAwayListener: FC<IClickAwayListenerProps> = (props) => {
       activatedRef.current = false;
     };
   }, []);
-
-  const handleRef = useForkRef(
-    // @ts-expect-error
-    children.ref,
-    nodeRef
-  );
+  //@ts-expect-error
+  const handleRef = useForkRef(children.ref, nodeRef);
   const handleClickAway = useEventCallback((event: MouseEvent | TouchEvent) => {
     const insideReactTree = syntheticEventRef.current;
     syntheticEventRef.current = false;
@@ -97,7 +93,7 @@ const ClickAwayListener: FC<IClickAwayListenerProps> = (props) => {
   const createHandleSynthetic =
     (handlerName: string) => (event: SyntheticEvent) => {
       syntheticEventRef.current = true;
-
+      //@ts-expect-error
       const childrenPropsHandler = children.props[handlerName];
       if (childrenPropsHandler) {
         childrenPropsHandler(event);

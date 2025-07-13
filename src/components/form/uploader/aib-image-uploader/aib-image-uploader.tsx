@@ -1,33 +1,34 @@
-'use client';
+"use client";
 
-import { FC, useRef, useState, DragEvent, ChangeEvent } from 'react';
-import { AibImageUploaderProps } from './interface';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { X, Upload } from 'lucide-react';
+import Image from "next/image";
+import { FC, useRef, useState, DragEvent, ChangeEvent } from "react";
+import { AibImageUploaderProps } from "./interface";
+import { cva, type VariantProps } from "class-variance-authority";
+import { X, Upload } from "lucide-react";
 
 const uploaderVariants = cva(
-  'relative w-full min-h-10 border-1 border-dashed flex items-center justify-center transition-colors overflow-hidden rounded-sm',
+  "relative w-full min-h-10 border-1 border-dashed flex items-center justify-center transition-colors overflow-hidden rounded-sm",
   {
     variants: {
       status: {
         default:
-          'border-gray-400 hover:border-zinc-800 focus-within:border-teal-500 cursor-pointer',
+          "border-gray-400 hover:border-zinc-800 focus-within:border-teal-500 cursor-pointer",
         error:
-          'border-red-600 text-red-600 hover:border-red-700 cursor-pointer bg-white',
-        disabled: 'border-gray-300 text-gray-300 cursor-not-allowed',
-        readonly: 'border-zinc-600 text-gray-300 cursor-default',
-        uploaded: 'border-zinc-800',
+          "border-red-600 text-red-600 hover:border-red-700 cursor-pointer bg-white",
+        disabled: "border-gray-300 text-gray-300 cursor-not-allowed",
+        readonly: "border-zinc-600 text-gray-300 cursor-default",
+        uploaded: "border-zinc-800",
       },
     },
     defaultVariants: {
-      status: 'default',
+      status: "default",
     },
   }
 );
 
 const AibImageUploader: FC<AibImageUploaderProps> = ({
   error = false,
-  errorMessage = '',
+  errorMessage = "",
   initialImageUrl,
   onFileChange,
   disabled = false,
@@ -39,7 +40,7 @@ const AibImageUploader: FC<AibImageUploaderProps> = ({
 
   const [previewUrls, setPreviewUrls] = useState<string[]>(() => {
     if (!initialImageUrl) return [];
-    if (typeof initialImageUrl === 'string') {
+    if (typeof initialImageUrl === "string") {
       return [initialImageUrl];
     }
     return initialImageUrl;
@@ -47,19 +48,19 @@ const AibImageUploader: FC<AibImageUploaderProps> = ({
 
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const getStatus = (): VariantProps<typeof uploaderVariants>['status'] => {
-    if (disabled) return 'disabled';
-    if (error && previewUrls.length === 0) return 'error';
-    if (readOnly && previewUrls.length > 0) return 'readonly';
-    if (previewUrls.length > 0) return 'uploaded';
-    return 'default';
+  const getStatus = (): VariantProps<typeof uploaderVariants>["status"] => {
+    if (disabled) return "disabled";
+    if (error && previewUrls.length === 0) return "error";
+    if (readOnly && previewUrls.length > 0) return "readonly";
+    if (previewUrls.length > 0) return "uploaded";
+    return "default";
   };
   const status = getStatus();
   const triggerFileDialog = () => {
     if (disabled || readOnly) return;
     inputRef.current?.click();
   };
-  const isImageFile = (f: File) => f.type.startsWith('image/');
+  const isImageFile = (f: File) => f.type.startsWith("image/");
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (disabled || readOnly) return;
 
@@ -90,7 +91,7 @@ const AibImageUploader: FC<AibImageUploaderProps> = ({
         onFileChange(firstImage);
       }
     }
-    e.target.value = '';
+    e.target.value = "";
   };
 
   const handleRemoveOne = (index: number) => {
@@ -114,7 +115,7 @@ const AibImageUploader: FC<AibImageUploaderProps> = ({
       }
     }
     if (inputRef.current) {
-      inputRef.current.value = '';
+      inputRef.current.value = "";
     }
   };
 
@@ -150,7 +151,7 @@ const AibImageUploader: FC<AibImageUploaderProps> = ({
 
     e.dataTransfer.clearData();
     if (inputRef.current) {
-      inputRef.current.value = '';
+      inputRef.current.value = "";
     }
   };
 
@@ -165,7 +166,7 @@ const AibImageUploader: FC<AibImageUploaderProps> = ({
         <input
           ref={inputRef}
           type="file"
-          accept={rest.accept ?? 'image/*'}
+          accept={rest.accept ?? "image/*"}
           className="hidden"
           onChange={handleFileChange}
           disabled={disabled || readOnly}
@@ -175,12 +176,12 @@ const AibImageUploader: FC<AibImageUploaderProps> = ({
           <div className="flex items-center justify-center space-x-2 px-22.5 py-2.5 pointer-events-none">
             <Upload
               className={
-                disabled ? 'h-5 w-5 text-gray-300' : 'h-5 w-5 text-gray-500'
+                disabled ? "h-5 w-5 text-gray-300" : "h-5 w-5 text-gray-500"
               }
             />
             <p
               className={`text-xs font-medium ${
-                disabled ? 'text-gray-300' : 'text-gray-500'
+                disabled ? "text-gray-300" : "text-gray-500"
               }`}
             >
               برای انتخاب کلیک کنید و یا تصویر را در اینجا رها کنید.
@@ -197,11 +198,11 @@ const AibImageUploader: FC<AibImageUploaderProps> = ({
                     <div
                       className={`h-14 w-14 rounded-sm flex items-center justify-center ${
                         disabled || readOnly
-                          ? 'border-none opacity-70'
-                          : 'border border-gray-500'
+                          ? "border-none opacity-70"
+                          : "border border-gray-500"
                       }`}
                     >
-                      <img
+                      <Image
                         src={url}
                         alt={`preview-${idx}`}
                         className="h-12 w-12 rounded-sm object-fill"
@@ -228,11 +229,11 @@ const AibImageUploader: FC<AibImageUploaderProps> = ({
                 <div
                   className={`h-14 w-14 relative rounded-sm flex items-center justify-center ${
                     disabled || readOnly
-                      ? 'border-none opacity-70'
-                      : 'border border-gray-500'
+                      ? "border-none opacity-70"
+                      : "border border-gray-500"
                   }`}
                 >
-                  <img
+                  <Image
                     src={previewUrls[0]}
                     alt="thumbnail"
                     className="h-12 w-12 rounded-sm object-fill"

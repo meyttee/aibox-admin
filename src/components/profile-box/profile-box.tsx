@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { FC, useState } from "react";
 import { cn } from "@/utils";
 import { ProfileBoxProps } from "./interface";
@@ -10,7 +11,7 @@ const ProfileBox: FC<ProfileBoxProps> = ({ username, avatarUrl, items }) => {
 
   const renderAvatar = () =>
     avatarUrl ? (
-      <img
+      <Image
         src={avatarUrl}
         alt={username}
         className={cn("rounded-full object-cover")}

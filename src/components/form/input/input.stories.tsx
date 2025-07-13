@@ -20,7 +20,7 @@ export const Sm: Story = {
   },
 };
 
-export const md: Story = {
+export const Md: Story = {
   args: {
     placeholder: "placeholder",
     startAdornment: <Search />,
@@ -29,7 +29,7 @@ export const md: Story = {
   },
 };
 
-export const lg: Story = {
+export const Lg: Story = {
   args: {
     placeholder: "placeholder",
     startAdornment: <Search />,

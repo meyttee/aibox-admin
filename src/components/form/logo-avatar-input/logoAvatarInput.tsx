@@ -1,45 +1,46 @@
-'use client';
+"use client";
 
-import { ChangeEvent, DragEvent, useState, useEffect } from 'react';
-import clsx from 'clsx';
-import { Controller } from 'react-hook-form';
-import { LogoAvatarProps } from './interface';
-import { Image, ImagePlus } from 'lucide-react';
+import { ChangeEvent, DragEvent, useState, useEffect } from "react";
+import clsx from "clsx";
+import { Controller } from "react-hook-form";
+import { LogoAvatarProps } from "./interface";
+import { Image as ImageIcon, ImagePlus } from "lucide-react";
+import Image from "next/image";
 
-const ALLOWED_IMAGE_FORMATS = 'image/png, image/jpeg';
+const ALLOWED_IMAGE_FORMATS = "image/png, image/jpeg";
 
 export const LogoAvatarInput = <
   TFieldValues extends Record<string, unknown> = Record<string, unknown>
 >(
   props: LogoAvatarProps<TFieldValues>
 ) => {
-  const [preview, setPreview] = useState<string>(props.src || '');
+  const [preview, setPreview] = useState<string>(props.src || "");
   const [isHovering, setIsHovering] = useState(false);
   const [hasError, setHasError] = useState(false);
 
   const {
     label,
-    src = '',
+    src = "",
     onClick,
     required = false,
-    mode = 'preview',
-    size = 'small',
+    mode = "preview",
+    size = "small",
   } = props;
 
   const sizeMap = {
-    small: { width: '54px', height: '54px' },
-    large: { width: '90px', height: '90px' },
+    small: { width: "54px", height: "54px" },
+    large: { width: "90px", height: "90px" },
   } as const;
 
   useEffect(() => {
-    if (mode === 'preview') {
+    if (mode === "preview") {
       setPreview(src);
     }
   }, [src, setPreview, mode]);
 
   useEffect(() => {
     return () => {
-      if (preview?.startsWith('blob:')) {
+      if (preview?.startsWith("blob:")) {
         URL.revokeObjectURL(preview);
       }
     };
@@ -53,9 +54,9 @@ export const LogoAvatarInput = <
   ) => {
     if (!file) return;
 
-    if (!file.type.startsWith('image/')) {
+    if (!file.type.startsWith("image/")) {
       setHasError(true);
-      setPreview('');
+      setPreview("");
       return;
     }
 
@@ -77,19 +78,19 @@ export const LogoAvatarInput = <
     const isInvalid = hasError || !!error;
 
     const handleDragOver = (e: DragEvent<HTMLDivElement>) => {
-      if (mode !== 'upload') return;
+      if (mode !== "upload") return;
       e.preventDefault();
-      e.dataTransfer.dropEffect = 'copy';
+      e.dataTransfer.dropEffect = "copy";
     };
 
     const handleDrop = (e: DragEvent<HTMLDivElement>) => {
-      if (mode !== 'upload') return;
+      if (mode !== "upload") return;
       e.preventDefault();
       handleFile(e.dataTransfer.files[0], onChange);
     };
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      if (mode !== 'upload') return;
+      if (mode !== "upload") return;
       handleFile(e.target.files?.[0], onChange);
     };
 
@@ -97,11 +98,11 @@ export const LogoAvatarInput = <
       <div className="flex flex-col items-center">
         <div
           className={clsx(
-            'relative overflow-hidden rounded-full border transition-all duration-200 bg-gray-100',
+            "relative overflow-hidden rounded-full border transition-all duration-200 bg-gray-100",
             {
-              'border-gray-500': !isInvalid,
-              'border-red-600': isInvalid,
-              'cursor-pointer': mode === 'upload',
+              "border-gray-500": !isInvalid,
+              "border-red-600": isInvalid,
+              "cursor-pointer": mode === "upload",
             }
           )}
           style={sizeMap[size]}
@@ -112,24 +113,24 @@ export const LogoAvatarInput = <
           onClick={onClick}
         >
           {preview && (
-            <img
+            <Image
               src={encodeURI(preview)}
               alt="Avatar"
               className="w-full h-full object-cover"
             />
           )}
-          {isHovering && mode === 'upload' && (
+          {isHovering && mode === "upload" && (
             <div className="absolute inset-0 flex items-center justify-center bg-[rgba(133,133,133,0.44)] pointer-events-none">
               <ImagePlus
                 className={clsx({
-                  'text-zinc-600': !isInvalid,
-                  'text-red-600': isInvalid,
+                  "text-zinc-600": !isInvalid,
+                  "text-red-600": isInvalid,
                 })}
               />
             </div>
           )}
 
-          {mode === 'upload' && (
+          {mode === "upload" && (
             <>
               <input
                 id="logoImage"
@@ -142,10 +143,10 @@ export const LogoAvatarInput = <
 
               {!preview && !isHovering && (
                 <div className="absolute inset-0 flex items-center justify-center bg-[rgba(133,133,133,0.44)] pointer-events-none">
-                  <Image
+                  <ImageIcon
                     className={clsx({
-                      'text-zinc-600': !isInvalid,
-                      'text-red-600': isInvalid,
+                      "text-zinc-600": !isInvalid,
+                      "text-red-600": isInvalid,
                     })}
                   />
                 </div>
@@ -156,13 +157,13 @@ export const LogoAvatarInput = <
 
         {label && (
           <label
-            className={clsx('text-gray-400 mt-2 text-sm', {
-              'text-red-600': isInvalid,
+            className={clsx("text-gray-400 mt-2 text-sm", {
+              "text-red-600": isInvalid,
             })}
           >
             {label}
             {required && (
-              <span className={clsx('ml-1', { 'text-red-600': isInvalid })}>
+              <span className={clsx("ml-1", { "text-red-600": isInvalid })}>
                 *
               </span>
             )}
@@ -172,7 +173,7 @@ export const LogoAvatarInput = <
     );
   };
 
-  if (mode === 'upload') {
+  if (mode === "upload") {
     const { control, name, ...rest } = props;
     return (
       <Controller

@@ -1,15 +1,13 @@
-import { z } from 'zod';
-import { createParser } from 'nuqs/server';
-import { ExtendedColumnFilter } from '../types';
+import { z } from "zod";
+import { createParser } from "nuqs/server";
+import { ExtendedColumnFilter } from "../types";
 
 const sortingItemSchema = z.object({
   sortBy: z.string(),
   orderBy: z.string(),
 });
 
-export const getSortingStateParser = <TData>(
-  columnIds?: string[] | Set<string>
-) => {
+export const getSortingStateParser = (columnIds?: string[] | Set<string>) => {
   const validKeys = columnIds
     ? columnIds instanceof Set
       ? columnIds

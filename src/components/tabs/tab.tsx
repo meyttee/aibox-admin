@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import { useQueryState } from 'nuqs';
-import type { TabProps } from './types';
+import { useQueryState } from "nuqs";
+import type { TabProps } from "./types";
 import {
   TabTitle,
   Tabs,
   TabsList,
   TabsTrigger,
   TabsContent,
-} from './components';
-import { useEffect } from 'react';
+} from "./components";
+import { useEffect } from "react";
 
 const Tab: React.FC<TabProps> = ({ tabs }) => {
-  const [rawTabId, setTabId] = useQueryState('tab');
+  const [rawTabId, setTabId] = useQueryState("tab");
   const tabId = rawTabId ?? undefined; // no null allowed
   let isValidTab = false;
 
-  const enabledTabs: TabProps['tabs'] = tabs.filter((t) => {
+  const enabledTabs: TabProps["tabs"] = tabs.filter((t) => {
     if (t.id === tabId && !t.isDisabled) isValidTab = true;
     return !t.isDisabled;
   });
