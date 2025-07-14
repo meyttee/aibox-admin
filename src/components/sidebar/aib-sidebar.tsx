@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ChevronDown, ChevronsRight, X } from 'lucide-react';
-import clsx from 'clsx';
+import Link from "next/link";
+import { ChevronDown, ChevronsRight, X } from "lucide-react";
+import clsx from "clsx";
 import {
   Sidebar,
   SidebarContent,
@@ -14,21 +14,21 @@ import {
   SidebarMenuItem,
   SidebarHeader,
   useSidebar,
-} from './sidebar';
+} from "./sidebar";
 
-import { AibSidebarProps, SidebarItem, SidebarSubItem } from './type';
-import { useSidebarItemsActive } from '../../hooks/useSidebarItemActive';
-import { AiBoxIcon } from '../icons';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../tooltip';
+import { AibSidebarProps, SidebarItem, SidebarSubItem } from "./type";
+import { useSidebarItemsActive } from "../../hooks/useSidebarItemActive";
+import { AiBoxIcon } from "../icons";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip/tooltip";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '../collapsible';
+} from "../collapsible/collapsible";
 
 export const AIBSidebar = ({ sidebarData, ...props }: AibSidebarProps) => {
   const { state, isMobile, toggleSidebar } = useSidebar();
-  const isCollapsed = state === 'collapsed';
+  const isCollapsed = state === "collapsed";
   const sidebarDataWithActive = useSidebarItemsActive(sidebarData);
 
   return (
@@ -46,14 +46,14 @@ export const AIBSidebar = ({ sidebarData, ...props }: AibSidebarProps) => {
         </SidebarHeader>
       )}
       <SidebarContent
-        className={clsx('bg-teal-950 relative', { 'pt-8': !isMobile })}
+        className={clsx("bg-teal-950 relative", { "pt-8": !isMobile })}
       >
         <div
           className={clsx(
-            'flex flex-col overflow-y-auto overflow-x-hidden pb-16 scrollbar',
+            "flex flex-col overflow-y-auto overflow-x-hidden pb-16 scrollbar",
             {
-              'h-[calc(100vh-140px)] gap-3': !isMobile,
-              'h-100vh': isMobile,
+              "h-[calc(100vh-140px)] gap-3": !isMobile,
+              "h-100vh": isMobile,
             }
           )}
         >
@@ -66,10 +66,10 @@ export const AIBSidebar = ({ sidebarData, ...props }: AibSidebarProps) => {
                   <TooltipTrigger
                     asChild
                     className={clsx(
-                      'flex items-center justify-center w-full h-11 cursor-pointer',
+                      "flex items-center justify-center w-full h-11 cursor-pointer",
                       {
-                        'text-cyan-300': item.isActive,
-                        'text-slate-200': !item.isActive,
+                        "text-cyan-300": item.isActive,
+                        "text-slate-200": !item.isActive,
                       }
                     )}
                   >
@@ -114,27 +114,27 @@ export const AIBSidebar = ({ sidebarData, ...props }: AibSidebarProps) => {
                   className="group/collapsible"
                 >
                   <SidebarGroup
-                    className={clsx('p-0', {
-                      'border-b-1 border-teal-600/32': isMobile,
+                    className={clsx("p-0", {
+                      "border-b-1 border-teal-600/32": isMobile,
                     })}
                   >
                     <SidebarGroupLabel
                       asChild
                       className={clsx(
-                        'text-sm rounded-none hover:bg-white/10',
+                        "text-sm rounded-none hover:bg-white/10",
                         {
-                          'h-14': isMobile,
-                          'h-11': !isMobile,
-                          'text-cyan-300': item.isActive,
-                          'text-slate-200': !item.isActive,
+                          "h-14": isMobile,
+                          "h-11": !isMobile,
+                          "text-cyan-300": item.isActive,
+                          "text-slate-200": !item.isActive,
                         }
                       )}
                     >
                       <CollapsibleTrigger
                         className={clsx(
-                          'flex items-center w-full pr-[20px] pl-[8px] py-[10px]',
+                          "flex items-center w-full pr-[20px] pl-[8px] py-[10px]",
                           {
-                            'border-r-2 border-cyan-300': item.isActive,
+                            "border-r-2 border-cyan-300": item.isActive,
                           }
                         )}
                       >
@@ -161,8 +161,8 @@ export const AIBSidebar = ({ sidebarData, ...props }: AibSidebarProps) => {
                     <CollapsibleContent>
                       <SidebarGroupContent>
                         <SidebarMenu
-                          className={clsx('gap-2 py-2', {
-                            'border-r-1 border-teal-600/85 mr-[30px]':
+                          className={clsx("gap-2 py-2", {
+                            "border-r-1 border-teal-600/85 mr-[30px]":
                               !isMobile,
                           })}
                         >
@@ -171,14 +171,14 @@ export const AIBSidebar = ({ sidebarData, ...props }: AibSidebarProps) => {
                               <SidebarMenuButton
                                 asChild
                                 className={clsx(
-                                  'flex items-center w-full h-9 hover:bg-white/10 hover:rounded-none active:bg-white/10',
+                                  "flex items-center w-full h-9 hover:bg-white/10 hover:rounded-none active:bg-white/10",
                                   {
-                                    'text-cyan-300 hover:text-cyan-300 active:text-cyan-300':
+                                    "text-cyan-300 hover:text-cyan-300 active:text-cyan-300":
                                       subItem.isActive,
-                                    'text-slate-200 hover:text-slate-200 active:text-slate-200':
+                                    "text-slate-200 hover:text-slate-200 active:text-slate-200":
                                       !subItem.isActive,
-                                    'h-9': !isMobile,
-                                    'h-12': isMobile,
+                                    "h-9": !isMobile,
+                                    "h-12": isMobile,
                                   }
                                 )}
                               >
@@ -205,19 +205,19 @@ export const AIBSidebar = ({ sidebarData, ...props }: AibSidebarProps) => {
               <SidebarGroup key={item.title} className="p-0 justify-start">
                 <SidebarGroupLabel
                   asChild
-                  className={clsx('text-sm rounded-none hover:bg-white/10', {
-                    'h-14 border-b-1 border-teal-600/32': isMobile,
-                    'h-11': !isMobile,
-                    'text-cyan-300': item.isActive,
-                    'text-slate-200': !item.isActive,
+                  className={clsx("text-sm rounded-none hover:bg-white/10", {
+                    "h-14 border-b-1 border-teal-600/32": isMobile,
+                    "h-11": !isMobile,
+                    "text-cyan-300": item.isActive,
+                    "text-slate-200": !item.isActive,
                   })}
                 >
                   <Link
-                    href={item.url || '#'}
+                    href={item.url || "#"}
                     className={clsx(
-                      'flex items-center justify-start w-full pr-[20px] pl-[8px] py-[10px] gap-2',
+                      "flex items-center justify-start w-full pr-[20px] pl-[8px] py-[10px] gap-2",
                       {
-                        'border-r-2 border-cyan-300': item.isActive,
+                        "border-r-2 border-cyan-300": item.isActive,
                       }
                     )}
                   >
@@ -239,8 +239,8 @@ export const AIBSidebar = ({ sidebarData, ...props }: AibSidebarProps) => {
             <ChevronsRight
               width={20}
               height={20}
-              className={clsx('transition-transform duration-300 ease-linear', {
-                'rotate-180': isCollapsed,
+              className={clsx("transition-transform duration-300 ease-linear", {
+                "rotate-180": isCollapsed,
               })}
             />
             {!isCollapsed && (

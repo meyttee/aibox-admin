@@ -6,7 +6,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../table";
+} from "../../table/table";
 
 interface DataTableSkeletonProps extends React.ComponentProps<"div"> {
   columnCount: number;

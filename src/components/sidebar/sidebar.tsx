@@ -11,13 +11,13 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-} from "../sheet";
+} from "../sheet/sheet";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../tooltip";
+} from "../tooltip/tooltip";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";

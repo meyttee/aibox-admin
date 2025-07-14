@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import clsx from 'clsx';
-import dynamic from 'next/dynamic';
-import { FC, useEffect, useState } from 'react';
-import { IChartProps } from './interface';
-import { ApexOptions } from 'apexcharts';
+import clsx from "clsx";
+import dynamic from "next/dynamic";
+import { FC, useEffect, useState } from "react";
+import { IChartProps } from "./interface";
+import { ApexOptions } from "apexcharts";
 
 const AreaChart: FC<IChartProps> = ({
   className,
   data,
-  title = '',
+  title = "",
   height = 350,
   horizontalCategories,
-  fillColor = '#BAFBF9',
+  fillColor = "#BAFBF9",
   enableTooltip = true,
 }) => {
-  const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
+  const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
   const [windowWidth, setWindowWidth] = useState<number>(0);
 
   useEffect(() => {
@@ -25,22 +25,22 @@ const AreaChart: FC<IChartProps> = ({
 
     handleResize();
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const defaultOptions: ApexOptions = {
     chart: {
-      type: 'area',
+      type: "area",
       height: height,
-      width: '100%',
+      width: "100%",
       toolbar: {
         show: false,
       },
       zoom: {
         enabled: false,
       },
-      fontFamily: 'inherit',
+      fontFamily: "inherit",
       animations: {
         enabled: true,
       },
@@ -55,20 +55,20 @@ const AreaChart: FC<IChartProps> = ({
           },
           title: {
             style: {
-              fontSize: '14px',
+              fontSize: "14px",
             },
           },
           xaxis: {
             labels: {
               style: {
-                fontSize: '10px',
+                fontSize: "10px",
               },
             },
           },
           yaxis: {
             labels: {
               style: {
-                fontSize: '10px',
+                fontSize: "10px",
               },
             },
           },
@@ -77,23 +77,23 @@ const AreaChart: FC<IChartProps> = ({
     ],
     title: {
       text: title,
-      align: 'right',
+      align: "right",
       style: {
-        fontSize: windowWidth < 640 ? '14px' : '16px',
-        fontWeight: '500',
-        fontFamily: 'inherit',
+        fontSize: windowWidth < 640 ? "14px" : "16px",
+        fontWeight: "500",
+        fontFamily: "inherit",
       },
     },
     dataLabels: {
       enabled: false,
     },
     stroke: {
-      curve: 'smooth' as const,
+      curve: "smooth" as const,
       width: [2, 1, 1],
-      colors: ['#0D9488', '#A21CAF', '#C2410C'],
+      colors: ["#0D9488", "#A21CAF", "#C2410C"],
     },
     fill: {
-      type: 'gradient',
+      type: "gradient",
       gradient: {
         shadeIntensity: 1,
         opacityFrom: 0.45,
@@ -108,31 +108,31 @@ const AreaChart: FC<IChartProps> = ({
             },
             {
               offset: 100,
-              color: '#fff',
+              color: "#fff",
               opacity: 0,
             },
           ],
           [
             {
               offset: 0,
-              color: '#fff',
+              color: "#fff",
               opacity: 0,
             },
             {
               offset: 100,
-              color: '#fff',
+              color: "#fff",
               opacity: 0,
             },
           ],
           [
             {
               offset: 0,
-              color: '#fff',
+              color: "#fff",
               opacity: 0,
             },
             {
               offset: 100,
-              color: '#fff',
+              color: "#fff",
               opacity: 0,
             },
           ],
@@ -146,9 +146,9 @@ const AreaChart: FC<IChartProps> = ({
       categories: horizontalCategories,
       labels: {
         style: {
-          colors: '#52525B',
-          fontFamily: 'inherit',
-          fontSize: windowWidth < 640 ? '10px' : '12px',
+          colors: "#52525B",
+          fontFamily: "inherit",
+          fontSize: windowWidth < 640 ? "10px" : "12px",
           fontWeight: 400,
         },
         rotate: windowWidth < 640 ? -45 : 0,
@@ -166,9 +166,9 @@ const AreaChart: FC<IChartProps> = ({
       tickAmount: windowWidth < 640 ? 3 : 4,
       labels: {
         style: {
-          colors: '#5E6566',
-          fontFamily: 'inherit',
-          fontSize: windowWidth < 640 ? '10px' : '12px',
+          colors: "#5E6566",
+          fontFamily: "inherit",
+          fontSize: windowWidth < 640 ? "10px" : "12px",
         },
         formatter: (value: number) => Math.round(value).toString(),
       },
@@ -181,14 +181,14 @@ const AreaChart: FC<IChartProps> = ({
     },
     tooltip: {
       enabled: enableTooltip,
-      theme: 'light',
+      theme: "light",
       shared: true,
       custom: function ({ series, seriesIndex, dataPointIndex }) {
         const value = series[seriesIndex][dataPointIndex];
         return (
           '<div dir="rtl" class="apexcharts-tooltip-box" style="' +
-          'background-color: #171919;' +
-          'border-radius: 6px;' +
+          "background-color: #171919;" +
+          "border-radius: 6px;" +
           '">' +
           '<div style="display: flex; align-items: center;">' +
           `<span style="
@@ -200,11 +200,11 @@ const AreaChart: FC<IChartProps> = ({
           align-items: center;
           gap: 6px;
         ">` +
-          '<span>کاربران جدید:</span>' +
+          "<span>کاربران جدید:</span>" +
           `<span>${Math.round(value)}</span>` +
-          '</span>' +
-          '</div>' +
-          '</div>'
+          "</span>" +
+          "</div>" +
+          "</div>"
         );
       },
       marker: {
@@ -215,24 +215,24 @@ const AreaChart: FC<IChartProps> = ({
       },
       y: {
         title: {
-          formatter: () => 'کاربران جدید',
+          formatter: () => "کاربران جدید",
         },
       },
       onDatasetHover: {
         highlightDataSeries: false,
       },
       style: {
-        fontSize: '14px',
-        fontFamily: 'inherit',
+        fontSize: "14px",
+        fontFamily: "inherit",
       },
       fixed: {
         enabled: false,
-        position: 'topRight',
+        position: "topRight",
         offsetY: 0,
       },
     },
     legend: {
-      horizontalAlign: 'left',
+      horizontalAlign: "left",
       itemMargin: {
         horizontal: 8,
       },
@@ -245,8 +245,8 @@ const AreaChart: FC<IChartProps> = ({
   return (
     <div
       className={clsx(
-        'w-full p-4',
-        'transition-all duration-300 ease-in-out',
+        "w-full p-4",
+        "transition-all duration-300 ease-in-out",
         className
       )}
     >

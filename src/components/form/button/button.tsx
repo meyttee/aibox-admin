@@ -4,7 +4,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/utils";
 import { buttonProps } from "./interface";
 import { buttonVariants } from "./classes";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../../tooltip";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../../tooltip/tooltip";
 import { Loading } from "../../loading";
 
 const Button: FC<buttonProps> = ({

@@ -7,8 +7,8 @@ import { Loader, X } from "lucide-react";
 import { Button } from "../../form";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/utils";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../../tooltip";
-import { Separator } from "../../separator";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../../tooltip/tooltip";
+import { Separator } from "../../separator/separator";
 
 interface DataTableActionBarProps<TData>
   extends React.ComponentProps<typeof motion.div> {

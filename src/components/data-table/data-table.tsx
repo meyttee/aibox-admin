@@ -15,7 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../table";
+} from "../table/table";
 import { NoData } from "../no-data";
 import { Button } from "../form";
 

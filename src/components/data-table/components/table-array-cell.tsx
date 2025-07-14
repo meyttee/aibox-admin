@@ -1,7 +1,7 @@
-'use client';
-import React, { useState } from 'react';
-import { Popover, PopoverContent, PopoverTrigger } from '../../popover';
-import { ArrayCellProps } from '../types';
+"use client";
+import React, { useState } from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "../../popover/popover";
+import { ArrayCellProps } from "../types";
 
 export const TableArrayCell: React.FC<ArrayCellProps> = ({
   items = [],
@@ -18,7 +18,7 @@ export const TableArrayCell: React.FC<ArrayCellProps> = ({
 
   return (
     <div className="flex items-center space-x-1">
-      <span className="text-sm text-foreground">{visibleItems.join('، ')}</span>
+      <span className="text-sm text-foreground">{visibleItems.join("، ")}</span>
 
       {hiddenCount > 0 && (
         <Popover open={open} onOpenChange={setOpen}>
