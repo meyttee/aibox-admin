@@ -1,5 +1,5 @@
-import { FieldValues } from 'react-hook-form';
-import { RhfInputProps } from './interface';
+import { FieldValues } from "react-hook-form";
+import { RhfInputProps } from "./interface";
 import {
   FormControl,
   FormDescription,
@@ -7,8 +7,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './../form';
-import { AIBInput } from './input';
+} from "../form";
+import { AIBInput } from "./input";
 
 export const RHFInput = <TFieldValues extends FieldValues>({
   name,
@@ -28,8 +28,8 @@ export const RHFInput = <TFieldValues extends FieldValues>({
           <AIBInput
             onChange={(e) => {
               onChange(
-                type === 'number'
-                  ? e.target.value === ''
+                type === "number"
+                  ? e.target.value === ""
                     ? undefined
                     : e.target.valueAsNumber
                   : e.target.value

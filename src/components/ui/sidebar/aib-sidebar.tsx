@@ -17,7 +17,7 @@ import {
 } from "./sidebar";
 
 import { AibSidebarProps, SidebarItem, SidebarSubItem } from "./type";
-import { useSidebarItemsActive } from "../../hooks/useSidebarItemActive";
+import { useSidebarItemsActive } from "../../../hooks/useSidebarItemActive";
 import { AiBoxIcon } from "../icons";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip/tooltip";
 import {

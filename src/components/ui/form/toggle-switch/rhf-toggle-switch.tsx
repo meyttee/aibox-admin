@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { FieldValues } from 'react-hook-form';
+import { FieldValues } from "react-hook-form";
 
 import {
   FormControl,
@@ -8,9 +8,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './../form';
-import { RHFToggleSwitchProps } from './interface';
-import { ToggleSwitch } from './toggle-switch';
+} from "../form";
+import { RHFToggleSwitchProps } from "./interface";
+import { ToggleSwitch } from "./toggle-switch";
 
 export const RHFToggleSwitch = <TFieldValues extends FieldValues>({
   name,

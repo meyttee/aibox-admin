@@ -5,7 +5,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { toast } from "@/components";
+import { toast } from "@/components/ui";
 import { useQueryParams } from "@/hooks";
 
 import {

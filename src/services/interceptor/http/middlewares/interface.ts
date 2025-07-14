@@ -1,4 +1,4 @@
-import { InternalAxiosRequestConfig, AxiosResponse } from 'axios';
+import { InternalAxiosRequestConfig, AxiosResponse } from "axios";
 /**
  * Interface for defining middleware to be used with Axios instances.
  * Allows for intercepting requests and responses to perform custom operations, such as logging or modifying requests/responses.

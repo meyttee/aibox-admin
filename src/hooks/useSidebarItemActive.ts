@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { SidebarItem } from '../components/sidebar/type';
-import { usePathname } from 'next/navigation';
+import { SidebarItem } from "../components/ui/sidebar/type";
+import { usePathname } from "next/navigation";
 
 /**
  * Returns an array where each item has an added `isActive` property

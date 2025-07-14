@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 
-import { toast } from "@/components";
+import { toast } from "@/components/ui";
 
 import UploadService from "./upload.service";
 import { IUploadThumbnailNewsResponse } from "./interface";

@@ -10,7 +10,7 @@ import {
 import { useQueryState } from "nuqs";
 import { useEffect, useMemo, useState } from "react";
 
-import { useDebouncedCallback } from "../../../hooks";
+import { useDebouncedCallback } from "../../../../hooks";
 import { Button } from "../../form";
 import { CustomChip } from "../../custom-chip";
 import { SearchBar } from "../../search-bar";

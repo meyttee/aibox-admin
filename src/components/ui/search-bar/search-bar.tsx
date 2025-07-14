@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import clsx from 'clsx';
-import { CircleX, LoaderCircle, Search } from 'lucide-react';
-import { useState } from 'react';
+import clsx from "clsx";
+import { CircleX, LoaderCircle, Search } from "lucide-react";
+import { useState } from "react";
 
-import { AIBInput } from '../form/input/input';
-import { IconRecord, IconState, SearchBarProps } from './interface';
+import { AIBInput } from "../form/input/input";
+import { IconRecord, IconState, SearchBarProps } from "./interface";
 
 export const SearchBar = ({
   value,
   onValueChange,
   loading,
-  placeholder = 'جستجو کنید...',
+  placeholder = "جستجو کنید...",
 }: SearchBarProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
-  const hasValue = value.trim() !== '';
+  const hasValue = value.trim() !== "";
 
   const iconsMap: IconRecord = {
     loading: {
@@ -32,7 +32,7 @@ export const SearchBar = ({
           strokeWidth={1.5}
         />
       ),
-      onClick: () => onValueChange(''),
+      onClick: () => onValueChange(""),
     },
     searchHover: {
       icon: <Search className="text-gray-400" strokeWidth={1.5} />,
@@ -43,13 +43,13 @@ export const SearchBar = ({
   };
 
   const getIconState = (): IconState => {
-    if (value && loading) return 'loading';
-    if (!hasValue && !isFocused && !isHovered) return 'search';
-    if (!hasValue && !isFocused && isHovered) return 'searchHover';
-    if (!hasValue && isFocused) return 'none';
-    if (hasValue && isFocused) return 'clear';
-    if (hasValue && !isFocused && !isHovered) return 'none';
-    return 'none';
+    if (value && loading) return "loading";
+    if (!hasValue && !isFocused && !isHovered) return "search";
+    if (!hasValue && !isFocused && isHovered) return "searchHover";
+    if (!hasValue && isFocused) return "none";
+    if (hasValue && isFocused) return "clear";
+    if (hasValue && !isFocused && !isHovered) return "none";
+    return "none";
   };
 
   const iconState = getIconState();
@@ -70,10 +70,10 @@ export const SearchBar = ({
         placeholder={placeholder}
         endAdornment={
           <button
-            className={clsx('mt-2 cursor-not-allowed', {
-              'cursor-pointer': iconState === 'clear',
+            className={clsx("mt-2 cursor-not-allowed", {
+              "cursor-pointer": iconState === "clear",
             })}
-            onMouseDown={() => onValueChange('')}
+            onMouseDown={() => onValueChange("")}
           >
             {currentState.icon}
           </button>

@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
-import { Button } from '../form';
-import { RefreshCw, X } from 'lucide-react';
-import * as Dialog from '@radix-ui/react-dialog';
-import { TerminalModalProps } from './interface';
+import { useEffect, useRef } from "react";
+import { Button } from "../form";
+import { RefreshCw, X } from "lucide-react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { TerminalModalProps } from "./interface";
 
 const Terminal = ({
   commands = <div />,
