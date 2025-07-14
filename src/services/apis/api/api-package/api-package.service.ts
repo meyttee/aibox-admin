@@ -1,21 +1,23 @@
-import { AbstractAPI, INetworkResponse } from '@aibox/services';
+import { AxiosResponse } from "axios";
+
+import { AbstractAPI, INetworkResponse } from "@/services";
+
 import {
   ApiResponse,
   UsersApiPackagesParams,
   UsersApiPackagesResponse,
-} from './interface';
-import { AxiosResponse } from 'axios';
+} from "./interface";
 
 export class ApiPackageService extends AbstractAPI {
   constructor() {
-    super('v1/admin/api_package');
+    super("v1/admin/api_package");
   }
 
   public async getAllUsersApiPackages(
     params: UsersApiPackagesParams
   ): Promise<AxiosResponse<INetworkResponse<UsersApiPackagesResponse>>> {
     return await this.http.request({
-      method: 'GET',
+      method: "GET",
       url: `${this.url}/user/`,
       params,
     });
@@ -26,7 +28,7 @@ export class ApiPackageService extends AbstractAPI {
   ): Promise<AxiosResponse<INetworkResponse<void>>> {
     console.log(ids);
     return await this.http.request({
-      method: 'DELETE',
+      method: "DELETE",
       url: `${this.url}/bulk_cancel/`,
       data: { ids: ids.toString() },
     });
@@ -36,8 +38,8 @@ export class ApiPackageService extends AbstractAPI {
     AxiosResponse<INetworkResponse<ApiResponse>>
   > {
     return await this.http.request({
-      method: 'GET',
-      url: 'v1/admin/api/all/',
+      method: "GET",
+      url: "v1/admin/api/all/",
     });
   }
 }

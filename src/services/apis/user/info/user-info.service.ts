@@ -1,6 +1,7 @@
-import { AxiosResponse } from 'axios';
+import { AxiosResponse } from "axios";
 
-import { AbstractAPI, INetworkResponse } from '@aibox/services';
+import { AbstractAPI, INetworkResponse } from "@/services";
+
 import type {
   IGetPackageUsageInfoResponsePayload,
   IGetUserApiPackageRequestPayload,
@@ -9,11 +10,11 @@ import type {
   IGetUserInfoRequestPayload,
   IGetUserInfoResponsePayload,
   IUpdateUserInfoRequest,
-} from './interface';
+} from "./interface";
 
 export default class UserInfoServices extends AbstractAPI {
   constructor() {
-    super('v1/admin/user');
+    super("v1/admin/user");
   }
 
   public async getUserInfo({
@@ -22,7 +23,7 @@ export default class UserInfoServices extends AbstractAPI {
     AxiosResponse<INetworkResponse<IGetUserInfoResponsePayload>>
   > {
     return await this.http.request({
-      method: 'GET',
+      method: "GET",
       url: `${this.url}/${id}/`,
     });
   }
@@ -34,7 +35,7 @@ export default class UserInfoServices extends AbstractAPI {
     AxiosResponse<INetworkResponse<IGetUserInfoResponsePayload>>
   > {
     return await this.http.request({
-      method: 'PUT',
+      method: "PUT",
       url: `${this.url}/${id}/`,
       data: body,
     });
@@ -47,7 +48,7 @@ export default class UserInfoServices extends AbstractAPI {
     AxiosResponse<INetworkResponse<IGetUserApiPackageResponsePayload>>
   > {
     return await this.http.request({
-      method: 'GET',
+      method: "GET",
       url: `v2/admin/api_package/user/?user=${id}`,
       params,
     });
@@ -58,7 +59,7 @@ export default class UserInfoServices extends AbstractAPI {
     AxiosResponse<INetworkResponse<IGetUserGpuPckageResponsePayload>>
   > {
     return await this.http.request({
-      method: 'GET',
+      method: "GET",
       url: `v1/admin/resource_package/user_package_info/${id}/`,
     });
   }
@@ -69,7 +70,7 @@ export default class UserInfoServices extends AbstractAPI {
     AxiosResponse<INetworkResponse<IGetPackageUsageInfoResponsePayload>>
   > {
     return await this.http.request({
-      method: 'GET',
+      method: "GET",
       url: `v1/admin/resource_management/servers_statistic/${id}/`,
     });
   }
